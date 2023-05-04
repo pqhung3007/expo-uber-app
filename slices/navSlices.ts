@@ -20,7 +20,7 @@ interface TravelTime extends Element {}
 interface InfoState {
   origin: Origin | null;
   destination: Destination | null;
-  travelTime: TravelTime | null;
+  travelTime: any | null;
 }
 
 const initialState: InfoState = {

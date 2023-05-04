@@ -8,22 +8,22 @@ import {
   View,
 } from "react-native";
 
-export default function PinAddress() {
-  const data = [
-    {
-      id: "1",
-      icon: "home",
-      type: "Home",
-      address: "Khu Ngoai Giao Doan",
-    },
-    {
-      id: "2",
-      icon: "briefcase",
-      type: "Work",
-      address: "71 Alley Lang Ha street",
-    },
-  ];
+const data = [
+  {
+    id: "1",
+    icon: "home",
+    type: "Home",
+    address: "Khu Ngoai Giao Doan",
+  },
+  {
+    id: "2",
+    icon: "briefcase",
+    type: "Work",
+    address: "71 Alley Lang Ha street",
+  },
+];
 
+export default function PinAddress() {
   return (
     <FlatList
       data={data}
