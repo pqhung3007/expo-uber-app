@@ -7,6 +7,8 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { useSelector } from "react-redux";
+import { selectTravelTime } from "../slices/navSlices";
 
 interface ICar {
   id: string;
@@ -38,27 +40,33 @@ const data = [
 
 export default function RideOptionsCard() {
   const [selectedCar, setSelectedCar] = useState<ICar | null>(null);
+  const travelInformation = useSelector(selectTravelTime);
 
   return (
     <SafeAreaView className="bg-white flex-grow">
-      <View></View>
+      <View>
+        <Text>Hello</Text>
+      </View>
 
       <FlatList
         data={data}
         keyExtractor={(item) => item.id}
-        ItemSeparatorComponent={() => <View className="h-2" />}
         renderItem={({ item: { id, title, multiplier, image }, item }) => (
           <TouchableOpacity
-            className="flex-row items-center justify-between px-8"
+            className={`flex-row items-center justify-between px-8 
+            }}`}
             onPress={() => setSelectedCar(item)}
           >
             <Image
               source={{ uri: image }}
               style={{ width: 80, height: 80, resizeMode: "contain" }}
             />
-            <View>
+            <View className="-ml-4">
               <Text className="text-base font-semibold">{title}</Text>
-              <Text>Travel time...</Text>
+              <Text>
+                {travelInformation?.distance.text} -{" "}
+                {travelInformation?.duration.text}
+              </Text>
             </View>
             <Text className="text-base">$99</Text>
           </TouchableOpacity>
