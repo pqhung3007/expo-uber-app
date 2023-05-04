@@ -1,3 +1,5 @@
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "@rneui/themed";
 import React, { useState } from "react";
 import {
   FlatList,
@@ -41,11 +43,19 @@ const data = [
 export default function RideOptionsCard() {
   const [selectedCar, setSelectedCar] = useState<ICar | null>(null);
   const travelInformation = useSelector(selectTravelTime);
+  const navigation = useNavigation();
 
   return (
     <SafeAreaView className="bg-white flex-grow">
-      <View>
-        <Text>Hello</Text>
+      <View className="flex-row items-center justify-center gap-x-2">
+        <TouchableOpacity
+          onPress={() => navigation.navigate("NavigateCard" as never)}
+        >
+          <Icon name="chevron-left" type="fontawesome" />
+        </TouchableOpacity>
+        <Text className="font-semibold py-3">
+          Select a Ride - {travelInformation?.distance?.text}
+        </Text>
       </View>
 
       <FlatList
@@ -53,22 +63,19 @@ export default function RideOptionsCard() {
         keyExtractor={(item) => item.id}
         renderItem={({ item: { id, title, multiplier, image }, item }) => (
           <TouchableOpacity
-            className={`flex-row items-center justify-between px-8 
-            }}`}
+            className={`flex-row items-center justify-between px-4  space-x-3
+            ${id === selectedCar?.id ? "bg-gray-200" : ""} `}
             onPress={() => setSelectedCar(item)}
           >
             <Image
               source={{ uri: image }}
               style={{ width: 80, height: 80, resizeMode: "contain" }}
             />
-            <View className="-ml-4">
+            <View className="-ml-4 flex-1">
               <Text className="text-base font-semibold">{title}</Text>
-              <Text>
-                {travelInformation?.distance?.text} -{" "}
-                {travelInformation?.duration?.text}
-              </Text>
+              <Text>{travelInformation?.duration?.text}</Text>
             </View>
-            <Text className="text-base">
+            <Text className="text-base flex-1 text-right">
               {travelInformation?.duration?.value &&
                 new Intl.NumberFormat("vi-VN", {
                   style: "currency",
@@ -88,7 +95,9 @@ export default function RideOptionsCard() {
           }`}
           disabled={!selectedCar}
         >
-          <Text className="text-center text-white text-base">Choose</Text>
+          <Text className="text-center text-white text-base">
+            Choose {selectedCar.title}
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
