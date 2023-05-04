@@ -34,7 +34,7 @@ export default function HomeScreen() {
               fontSize: 16,
             },
           }}
-          placeholder="Where from?"
+          placeholder="Enter pick-up location"
           query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
           nearbyPlacesAPI="GooglePlacesSearch"
           onPress={(data, details = null) => {
