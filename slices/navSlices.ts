@@ -1,10 +1,26 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
+interface Point {
+  lat: number;
+  lng: number;
+}
+
+interface Origin {
+  location: Point;
+  description: string;
+}
+
+interface Destination {
+  location: Point;
+  description: string;
+}
+
+interface TravelTime extends Element {}
 interface InfoState {
-  origin: string | null;
-  destination: string | null;
-  travelTime: string | null;
+  origin: Origin | null;
+  destination: Destination | null;
+  travelTime: TravelTime | null;
 }
 
 const initialState: InfoState = {
