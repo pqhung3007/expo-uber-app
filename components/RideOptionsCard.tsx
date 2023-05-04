@@ -64,11 +64,19 @@ export default function RideOptionsCard() {
             <View className="-ml-4">
               <Text className="text-base font-semibold">{title}</Text>
               <Text>
-                {travelInformation?.distance.text} -{" "}
-                {travelInformation?.duration.text}
+                {travelInformation?.distance?.text} -{" "}
+                {travelInformation?.duration?.text}
               </Text>
             </View>
-            <Text className="text-base">$99</Text>
+            <Text className="text-base">
+              {travelInformation?.duration?.value &&
+                new Intl.NumberFormat("vi-VN", {
+                  style: "currency",
+                  currency: "VND",
+                }).format(
+                  travelInformation?.duration?.value * multiplier * 100
+                )}
+            </Text>
           </TouchableOpacity>
         )}
       />
