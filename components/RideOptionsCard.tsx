@@ -96,7 +96,7 @@ export default function RideOptionsCard() {
           disabled={!selectedCar}
         >
           <Text className="text-center text-white text-base">
-            Choose {selectedCar.title}
+            Choose {selectedCar?.title}
           </Text>
         </TouchableOpacity>
       </View>
