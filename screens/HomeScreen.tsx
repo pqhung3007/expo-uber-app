@@ -1,8 +1,10 @@
-import { GOOGLE_MAPS_APIKEY } from "@env";
 import React from "react";
-import { Image, Text, View } from "react-native";
+import { Image, View } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { SafeAreaView } from "react-native-safe-area-context";
+
+import { GOOGLE_MAPS_APIKEY } from "@env";
+import Options from "../components/Options";
 
 export default function HomeScreen() {
   return (
@@ -19,8 +21,6 @@ export default function HomeScreen() {
           }}
         />
 
-        <Text>{GOOGLE_MAPS_APIKEY}</Text>
-
         <GooglePlacesAutocomplete
           styles={{
             container: {
@@ -33,11 +33,11 @@ export default function HomeScreen() {
           placeholder="Where from?"
           query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
           nearbyPlacesAPI="GooglePlacesSearch"
-          onPress={(data, details = null) => console.log(data, details)}
           onFail={(error) => console.error(error)}
           debounce={400}
         />
-        {/*  <Options /> */}
+
+        <Options />
       </View>
     </SafeAreaView>
   );
