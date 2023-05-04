@@ -1,11 +1,19 @@
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "@rneui/themed";
 import React from "react";
-import { SafeAreaView, StyleSheet, View } from "react-native";
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useDispatch } from "react-redux";
 
 import { setDestination } from "../slices/navSlices";
+import PinAddress from "./PinAddress";
 
 export default function NavigateCard() {
   const dispatch = useDispatch();
@@ -36,6 +44,28 @@ export default function NavigateCard() {
             enablePoweredByContainer={false}
           />
         </View>
+
+        <PinAddress />
+      </View>
+
+      <View className="flex-row justify-evenly py-2 pb-8 mt-auto border-t border-gray-100">
+        <TouchableOpacity
+          className="flex-row space-x-2 justify-center items-center px-4 py-3 rounded-full bg-black"
+          onPress={() => navigation.navigate("RideOptionsCard" as never)}
+        >
+          <Icon name="car" type="font-awesome" color="white" size={16} />
+          <Text className="text-white text-center">Rides</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity className="flex-row space-x-2 justify-center items-center px-4 py-2 rounded-full bg-black">
+          <Icon
+            name="fast-food-outline"
+            type="ionicon"
+            color="white"
+            size={16}
+          />
+          <Text className="text-white text-center">Eats</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
