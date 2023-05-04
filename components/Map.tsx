@@ -40,6 +40,19 @@ export default function Map() {
           identifier="origin"
         />
       )}
+
+      {/* show marker for the destination as well */}
+      {destination?.location && (
+        <Marker
+          coordinate={{
+            latitude: destination.location.lat,
+            longitude: destination.location.lng,
+          }}
+          title="Destination"
+          description={destination.description}
+          identifier="destination"
+        />
+      )}
     </MapView>
   );
 }
