@@ -38,8 +38,6 @@ export default function HomeScreen() {
           query={{ key: GOOGLE_MAPS_APIKEY, language: "en" }}
           nearbyPlacesAPI="GooglePlacesSearch"
           onPress={(data, details = null) => {
-            console.log(details);
-
             dispatch(
               setOrigin({
                 location: details?.geometry?.location,
